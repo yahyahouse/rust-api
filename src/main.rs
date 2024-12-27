@@ -1,5 +1,5 @@
 use actix_web::{web, App, HttpServer};
-use log::info;
+use log::{error, info, warn, debug,trace};
 use utoipa::OpenApi;
 
 use crate::handlers::ApiDoc;
@@ -18,6 +18,10 @@ mod config;
 async fn main() -> std::io::Result<()> {
     config::init_logging();
     info!("Starting HTTP server at http://localhost:8000");
+    warn!("Starting HTTP server at http://localhost:8000");
+    error!("Starting HTTP server at http://localhost:8000");
+    debug!("Starting HTTP server at http://localhost:8000");
+    trace!("Starting HTTP server at http://localhost:8000");
     let openapi = ApiDoc::openapi();
     let pool = establish_connection().await;
 
